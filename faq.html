@@ -1,38 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - FAQ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: honeydew;
+            color: #144a21;
+            transition: 0.3s;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #aaa;
+        }
+
+        .theme-container {
+            text-align: right;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #144a21;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .faq {
+            margin-bottom: 15px;
+        }
+
+        .question {
+            width: 100%;
+            text-align: left;
+            background-color: white;
+            color: #144a21;
+            border: 1px solid #144a21;
+        }
+
+        .answer {
+            display: none;
+            padding: 10px 15px;
+            background-color: #e8f5e9;
+            color: #144a21;
+            border-left: 3px solid #144a21;
+        }
+
+        .dark {
+            background-color: #152d19;
+            color: white;
+        }
+
+        .dark h1,
+        .dark h2 {
+            color: white;
+        }
+
+        .dark .question {
+            background-color: #263d2a;
+            color: white;
+            border-color: white;
+        }
+
+        .dark .answer {
+            background-color: #263d2a;
+            color: white;
+            border-color: white;
+        }
+
+        .dark button {
+            background-color: white;
+            color: #152d19;
+        }
+
+        .dark hr {
+            border-color: #777;
+        }
+    </style>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+
+        function toggleFAQ(id) {
+            const answer = document.getElementById(id);
+
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            } else {
+                answer.style.display = "block";
+            }
+        }
+    </script>
+
 </head>
 
-<body bgcolor="honeydew">
+<body>
 
-<header>
-    <h1 align="center"><font color="darkgreen">StudentHub</font></h1>
+    <header>
+
+        <div class="theme-container">
+            <button onclick="toggleTheme()">🌙 Theme</button>
+        </div>
+
+        <h1>StudentHub</h1>
+        <h2>Frequently Asked Questions</h2>
+
+        <hr>
+
+    </header>
+
+    <main>
+
+        <section class="faq">
+
+            <button class="question" onclick="toggleFAQ('ans1')">
+                1. How do I register?
+            </button>
+
+            <div class="answer" id="ans1">
+                <p>Go to the register page and fill in the form.</p>
+            </div>
+
+        </section>
+
+        <section class="faq">
+
+            <button class="question" onclick="toggleFAQ('ans2')">
+                2. How do I login?
+            </button>
+
+            <div class="answer" id="ans2">
+                <p>Use your registered email and password.</p>
+            </div>
+
+        </section>
+
+        <section class="faq">
+
+            <button class="question" onclick="toggleFAQ('ans3')">
+                3. Can I update my profile?
+            </button>
+
+            <div class="answer" id="ans3">
+                <p>Yes, you can update your profile from the profile page.</p>
+            </div>
+
+        </section>
+
+    </main>
 
     <hr>
-</header>
-
-<main>
-
-<section>
-
-<h2><font color="darkgreen">Frequently Asked Questions</font></h2>
-
-<h3>1. How do I register?</h3>
-<p>Go to the Register page and fill in the form.</p>
-
-<h3>2. How do I login?</h3>
-<p>Use your registered email and password.</p>
-
-<h3>3. Can I update my profile?</h3>
-<p>Yes, you can update your profile from the Profile page.</p>
-
-</section>
-
-</main>
-
-<hr>
 
 </body>
+
 </html>

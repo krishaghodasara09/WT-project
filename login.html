@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>StudentHub - Login</title>
+    <title>Studenthub - Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 
-<body bgcolor="honeydew">
-
+<body>
 <header>
-    <h1 align="center"><font color="darkgreen">StudentHub</font></h1>
-
-    <hr>
+    <h1>StudentHub</h1>
+    <h2>Login</h2>
 </header>
 
-<main>
+<hr>
 
-<section>
+<form name="myform" action="register.html" method="get" onsubmit="return f()">
 
-<h2><font color="darkgreen">Student Login</font></h2>
+    <label>Username</label><br>
+    <input type="text" name="uname"><br><br>
 
-<form>
+    <label>Password</label><br>
+    <input type="password" name="pword"><br><br>
 
-<label for="email">Email:</label><br>
-<input type="email" id="email"><br><br>
-
-<label for="password">Password:</label><br>
-<input type="password" id="password"><br><br>
-
-<input type="submit" value="Login">
+    <input type="submit" value="Login">
 
 </form>
 
-</section>
+<script>
+function f() {
+    var a = document.forms["myform"];
+    var u = a.uname.value;
+    var p = a.pword.value;
 
-</main>
-
-<hr>
+    if (u == "admin" && p == "1234") {
+        alert("Valid Login");
+        return true; 
+    } else {
+        alert("Invalid Login");
+        return false; 
+    }
+}
+</script>
 
 </body>
 </html>

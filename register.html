@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Register</title>
+
+    <link rel="stylesheet" href="register.css">
 </head>
 
-<body bgcolor="honeydew">
+<body>
 
-<header>
-    <h1 align="center"><font color="darkgreen">StudentHub</font></h1>
+    <header>
+        <h1>StudentHub</h1>
+        <h2>Register</h2>
+    </header>
+
+    <main>
+
+        <form name="registerForm" onsubmit="return validateForm()">
+
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="course">Course</label>
+            <input type="text" id="course" name="course" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Register">
+
+        </form>
+
+    </main>
+
     <hr>
-</header>
 
-<main>
+    <script>
+        function validateForm() {
 
-<section>
+            const form = document.forms["registerForm"];
 
-<h2><font color="darkgreen">Student Registration</font></h2>
+            const name = form.name.value;
+            const email = form.email.value;
+            const course = form.course.value;
+            const password = form.password.value;
 
-<form>
+            if (name === "" || email === "" || course === "" || password === "") {
+                alert("Please fill all the fields.");
+                return false;
+            }
 
-<label for="name">Full Name:</label><br>
-<input type="text" id="name"><br><br>
-
-<label for="email">Email:</label><br>
-<input type="email" id="email"><br><br>
-
-<label for="course">Course:</label><br>
-<input type="text" id="course"><br><br>
-
-<label for="password">Password:</label><br>
-<input type="password" id="password"><br><br>
-
-<input type="submit" value="Register">
-
-</form>
-
-</section>
-
-</main>
-
-<hr>
-
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
 
 </body>
+
 </html>
