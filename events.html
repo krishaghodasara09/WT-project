@@ -2,37 +2,192 @@
 <html>
 
 <head>
+
     <title>StudentHub - Events</title>
+
+    <style>
+
+    body {
+    background-color: honeydew;
+    color: rgb(10, 67, 10);
+    }
+
+    button {
+    background-color:rgb(10, 67, 10);
+        color: honeydew;
+    }
+
+    button:hover {
+        background-color: rgb(10, 67, 10);
+    }
+    h1 {
+        text-align: center;
+    }
+
+    input, select, button{
+        padding: 8px;
+        margin: 5px;
+    }
+
+    .event {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    </style>
+
 </head>
 
-<body bgcolor="honeydew">
+<body>
 
-<header>
-    <h1 align="center"><font color="darkgreen">StudentHub</font></h1>
-    <h1 align="center"><font color="darkgreen">Events</font></h1>
-    <hr>
-</header>
+    <h1>Events</h1>
 
-<main>
+    <!-- Search -->
+    <input type="text" id="search" placeholder="Search event">
 
-<section>
+    <!-- Filter -->
+    <select id="category">
 
-<h2><font color="darkgreen">Upcoming Events</font></h2>
+        <option value="All">All</option>
+        <option value="Workshop">Workshop</option>
+        <option value="Seminar">Seminar</option>
+        <option value="Competition">Competition</option>
 
-<img src="https://cdn-icons-png.flaticon.com/512/780/780575.png" alt="College Events" width="500">
+    </select>
 
-<ul>
-    <li>Web Development Workshop - 25 July</li>
-    <li>Hackathon - 30 July</li>
-    <li>Sports Day - 5 August</li>
-    <li>Cultural Fest - 12 August</li>
-</ul>
+    <!-- Sort -->
+    <button onclick="sortEvents()">
+        Sort by Name
+    </button>
 
-</section>
+    <!-- <hr> -->
 
-</main>
+    <div id="output">Loading...</div>
 
-<hr>
+    <br>
+
+    <!-- Pagination -->
+    <button onclick="previousPage()">
+        Previous
+    </button>
+
+    <button onclick="nextPage()">
+        Next
+    </button>
+
+
+    <script>
+
+        let events = [];
+        let page = 1;
+        let perPage = 5;
+
+        // Fetch JSON data
+        fetch("events.json")
+            .then(response => response.json())
+            .then(data => {
+                events = data;
+                displayEvents();
+
+            })
+
+            .catch(error => {
+                document.getElementById("output").innerHTML =
+                    "Error loading data";
+            });
+
+
+        // Display events
+        function displayEvents() {
+
+            let searchText = document.getElementById("search") .value.toLowerCase();
+            let category =document.getElementById("category").value;
+            // Search
+            let result = events.filter(function(event) {
+                return event.name .toLowerCase() .includes(searchText);
+
+            });
+
+
+            // Filter
+            if (category != "All") {
+                result = result.filter(function(event) {
+                    return event.category == category;
+                });
+
+            }
+
+
+            // Pagination
+            let start = (page - 1) * perPage;
+            let end = start + perPage;
+            let pageData = result.slice(start, end);
+
+
+            // Display
+            let output = "";
+
+
+            pageData.forEach(function(event) {
+                output +="<div class='event'>" + "<h3>" + event.name + "</h3>" +
+                    "<p>Category: " + event.category + "</p>" +
+                    "<p>Date: " + event.date + "</p>" +
+                    "</div>";
+
+            });
+
+
+            document.getElementById("output")
+                .innerHTML = output;
+
+        }
+
+
+        // Search
+        document.getElementById("search")
+            .addEventListener("input", function() {
+                page = 1;
+                displayEvents();
+            });
+
+
+        // Filter
+        document.getElementById("category")
+            .addEventListener("change", function() {
+                page = 1;
+                displayEvents();
+            });
+
+
+        // Sort
+        function sortEvents() {
+            events.sort(function(a, b) {
+                return a.name.localeCompare(b.name);
+
+            });
+
+            displayEvents();
+        }
+
+
+        // Next page
+        function nextPage() {
+            page++;
+            displayEvents();
+        }
+
+
+        // Previous page
+        function previousPage() {
+            if (page > 1) {
+                page--;
+                displayEvents();
+            }
+        }
+
+    </script>
 
 </body>
+
 </html>
