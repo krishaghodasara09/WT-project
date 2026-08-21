@@ -3,6 +3,32 @@
 <head>
     <title>Studenthub - Login</title>
     <link rel="stylesheet" href="login.css">
+
+    <script>
+    function validate() {
+
+        let u = document.getElementById("uname").value;
+        let p = document.getElementById("password").value;
+
+        let pwdtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
+
+        if (u == "") {
+            alert("Please enter your username");
+            return false;
+        }
+        if (p == "") {
+            alert("Please enter your password");
+            return false;
+        }
+        if (!pwdtest.test(p)) {
+            alert("Password must have 1 uppercase, 1 lowercase, 1 digit, and minimum length of 6");
+            return false;
+        }
+
+        alert("Login successful");
+        return true;
+    }
+    </script>
 </head>
 
 <body>
@@ -12,34 +38,18 @@
 </header>
 
 <hr>
-
-<form name="myform" action="register.html" method="get" onsubmit="return f()">
+<form name="myform" action="register.html" method="get" onsubmit="return validate()">
 
     <label>Username</label><br>
-    <input type="text" name="uname"><br><br>
+    <input type="text" id="uname" name="uname" placeholder="Enter username"><br><br>
 
     <label>Password</label><br>
-    <input type="password" name="pword"><br><br>
+    <input type="password" id="password" name="pword" placeholder="Enter password"><br><br>
 
     <input type="submit" value="Login">
 
 </form>
 
-<script>
-function f() {
-    var a = document.forms["myform"];
-    var u = a.uname.value;
-    var p = a.pword.value;
-
-    if (u == "admin" && p == "1234") {
-        alert("Valid Login");
-        return true; 
-    } else {
-        alert("Invalid Login");
-        return false; 
-    }
-}
-</script>
 
 </body>
 </html>

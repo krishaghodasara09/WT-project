@@ -28,7 +28,7 @@ hr {
 form {
     width: 400px;
     max-width: 90%;
-    margin: 30px auto;
+    margin: 0 auto;
     padding: 25px;
 
     background-color: white;
@@ -51,7 +51,7 @@ input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 8px;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
 
     border: 1px solid #aaa;
     border-radius: 4px;

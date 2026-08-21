@@ -8,6 +8,42 @@
     <title>StudentHub - Register</title>
 
     <link rel="stylesheet" href="register.css">
+
+    <script>
+    function validateform() {
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let Rollno = document.getElementById("Rollno").value;
+
+        let pwdtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
+        let rolltest = /^[0-9]{2}aiml[0-9]{3}$/;
+
+        if (!rolltest.test(Rollno)) {
+            alert("Enter Valid ID");
+            return false;
+        }
+
+        if (name == "") {
+            alert("Please enter your name");
+            return false;
+        }
+
+        if (email == "") {
+            alert("Please enter your email");
+            return false;
+        }
+
+        if (!pwdtest.test(password)) {
+            alert("Password must have 1 uppercase, 1 lowercase, 1 digit, and minimum length of 6");
+            return false;
+        }
+
+        alert("Registration successful");
+        return true;
+    }
+    </script>
 </head>
 
 <body>
@@ -19,47 +55,31 @@
 
     <main>
 
-        <form name="registerForm" onsubmit="return validateForm()">
+        <form onsubmit="return validateform()">
 
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required>
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" placeholder="Enter your name"><br><br>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+        <label for="Rollno">ID:</label><br>
+        <input type="text" id="Rollno" placeholder="Enter your ID"><br><br>
 
-            <label for="course">Course</label>
-            <input type="text" id="course" name="course" required>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" placeholder="Enter your email"><br><br>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Enter your password"><br><br>
 
-            <input type="submit" value="Register">
+        <label for="course">Course:</label><br>
+        <input type="text" id="course" placeholder="Enter your course"><br><br>
 
-        </form>
+        <input type="submit" value="Register">
+
+</form>
 
     </main>
 
     <hr>
 
-    <script>
-        function validateForm() {
-
-            const form = document.forms["registerForm"];
-
-            const name = form.name.value;
-            const email = form.email.value;
-            const course = form.course.value;
-            const password = form.password.value;
-
-            if (name === "" || email === "" || course === "" || password === "") {
-                alert("Please fill all the fields.");
-                return false;
-            }
-
-            alert("Registration Successful!");
-            return true;
-        }
-    </script>
 
 </body>
 
