@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>StudentHub - Contact</title>
 </head>
 
 <body bgcolor="honeydew">
 
 <header>
-    <h1 align="center"><font color="darkgreen">StudentHub</font></h1>
-
+    <h1 align="center">
+        <font color="darkgreen">StudentHub</font>
+    </h1>
     <hr>
 </header>
 
@@ -17,22 +21,27 @@
 
 <section>
 
-<h2><font color="darkgreen">Contact Us</font></h2>
+    <h2><font color="darkgreen">Contact Us</font></h2>
 
-<form>
+    <form action="contact.php" method="POST">
 
-<label for="name">Name:</label><br>
-<input type="text" id="name"><br><br>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"
+               placeholder="Enter your name" required><br><br>
 
-<label for="email">Email:</label><br>
-<input type="email" id="email"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"
+               placeholder="Enter your email" required><br><br>
 
-<label for="message">Message:</label><br>
-<textarea id="message" rows="5" cols="30"></textarea><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"
+                  rows="5" cols="30"
+                  placeholder="Enter your message"
+                  required></textarea><br><br>
 
-<input type="submit" value="Send">
+        <input type="submit" value="Send">
 
-</form>
+    </form>
 
 </section>
 
@@ -41,4 +50,3 @@
 <hr>
 
 </body>
-</html>

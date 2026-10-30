@@ -12,10 +12,10 @@
     <script>
     function validateform() {
 
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
         let password = document.getElementById("password").value;
-        let Rollno = document.getElementById("Rollno").value;
+        let Rollno = document.getElementById("Rollno").value.trim();
 
         let pwdtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
         let rolltest = /^[0-9]{2}aiml[0-9]{3}$/;
@@ -40,7 +40,6 @@
             return false;
         }
 
-        alert("Registration successful");
         return true;
     }
     </script>
@@ -55,32 +54,35 @@
 
     <main>
 
-        <form onsubmit="return validateform()">
+        <form action="register.php" method="POST" onsubmit="return validateform()">
 
-        <label for="name">Full Name:</label><br>
-        <input type="text" id="name" placeholder="Enter your name"><br><br>
+            <label for="name">Full Name:</label><br>
+            <input type="text" id="name" name="name"
+                   placeholder="Enter your name" required><br><br>
 
-        <label for="Rollno">ID:</label><br>
-        <input type="text" id="Rollno" placeholder="Enter your ID"><br><br>
+            <label for="Rollno">ID:</label><br>
+            <input type="text" id="Rollno" name="Rollno"
+                   placeholder="Enter your ID" required><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" placeholder="Enter your email"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"
+                   placeholder="Enter your email" required><br><br>
 
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" placeholder="Enter your password"><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"
+                   placeholder="Enter your password" required><br><br>
 
-        <label for="course">Course:</label><br>
-        <input type="text" id="course" placeholder="Enter your course"><br><br>
+            <label for="course">Course:</label><br>
+            <input type="text" id="course" name="course"
+                   placeholder="Enter your course" required><br><br>
 
-        <input type="submit" value="Register">
+            <input type="submit" value="Register">
 
-</form>
+        </form>
 
     </main>
 
     <hr>
 
-
 </body>
-
 </html>
