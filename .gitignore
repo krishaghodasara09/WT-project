@@ -1,1 +1,17 @@
+# Private data
 data/
+
+# Uploaded files
+uploads/*
+
+# Keep the uploads folder
+!uploads/.gitkeep
+
+# Environment and secret files
+.env
+.env.*
+
+# Temporary files
+*.log
+.DS_Store
+Thumbs.db

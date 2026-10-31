@@ -1,55 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Studenthub - Login</title>
+    <meta charset="UTF-8">
+    <title>StudentHub - Login</title>
     <link rel="stylesheet" href="login.css">
 
     <script>
     function validate() {
 
-        let u = document.getElementById("uname").value;
+        let u = document.getElementById("uname").value.trim();
         let p = document.getElementById("password").value;
-
-        let pwdtest = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
 
         if (u == "") {
             alert("Please enter your username");
             return false;
         }
+
         if (p == "") {
             alert("Please enter your password");
             return false;
         }
-        if (!pwdtest.test(p)) {
-            alert("Password must have 1 uppercase, 1 lowercase, 1 digit, and minimum length of 6");
-            return false;
-        }
 
-        alert("Login successful");
         return true;
     }
     </script>
 </head>
 
 <body>
+
 <header>
     <h1>StudentHub</h1>
     <h2>Login</h2>
 </header>
 
 <hr>
-<form name="myform" action="register.html" method="get" onsubmit="return validate()">
 
-    <label>Username</label><br>
-    <input type="text" id="uname" name="uname" placeholder="Enter username"><br><br>
+<form name="myform" action="login.php" method="POST"
+      onsubmit="return validate()">
+
+    <label>Username (Roll Number)</label><br>
+    <input type="text" id="uname" name="uname"
+           placeholder="Enter your roll number" required>
+    <br><br>
 
     <label>Password</label><br>
-    <input type="password" id="password" name="pword" placeholder="Enter password"><br><br>
+    <input type="password" id="password" name="pword"
+           placeholder="Enter password" required>
+    <br><br>
 
     <input type="submit" value="Login">
 
 </form>
-
 
 </body>
 </html>
