@@ -27,7 +27,7 @@ require_once "db.php";
 $userResult = $conn->query("SELECT COUNT(*) AS total FROM students");
 $totalUsers = $userResult->fetch_assoc()["total"];
 
-// Total students (excluding admins)
+// Total students
 $studentResult = $conn->query(
     "SELECT COUNT(*) AS total FROM students WHERE role = 'student'"
 );
@@ -49,8 +49,11 @@ $registrationResult = $conn->query("
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Admin Dashboard</title>
 
     <style>
@@ -68,6 +71,29 @@ $registrationResult = $conn->query("
 
         h1, h2 {
             color: darkgreen;
+        }
+
+        nav {
+            background-color: darkgreen;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px 10px;
         }
 
         .highlight {
@@ -101,25 +127,6 @@ $registrationResult = $conn->query("
             font-weight: bold;
         }
 
-        nav {
-            margin: 20px;
-        }
-
-        nav a {
-            display: inline-block;
-            background-color: darkgreen;
-            color: white;
-            padding: 10px 15px;
-            margin: 5px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        nav a:hover, .logout:hover {
-            background-color: #2e7d32;
-        }
-
         table {
             margin: 20px auto;
             border-collapse: collapse;
@@ -138,15 +145,9 @@ $registrationResult = $conn->query("
             color: darkgreen;
         }
 
-        .logout {
-            display: inline-block;
-            background-color: darkgreen;
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            margin: 20px;
+        footer {
+            margin-top: 30px;
+            padding: 15px;
         }
 
         @media (max-width: 600px) {
@@ -160,7 +161,7 @@ $registrationResult = $conn->query("
             }
 
             table {
-                width: 95%;
+                width: 100%;
                 font-size: 12px;
             }
 
@@ -177,6 +178,16 @@ $registrationResult = $conn->query("
     <h1>StudentHub</h1>
     <h2>Admin Dashboard</h2>
 </header>
+
+<nav>
+    <a href="admin_dashboard.php">Home</a>
+    <a href="manage_students.php">Manage Students</a>
+    <a href="manage_events.php">Manage Events</a>
+    <a href="events_api.html">Events API</a>
+    <a href="profile.php">Profile</a>
+    <a href="contact.html">Contact</a>
+    <a href="logout.php">Logout</a>
+</nav>
 
 <main>
 
@@ -207,18 +218,6 @@ $registrationResult = $conn->query("
 
     </section>
 
-    <h2>Admin Menu</h2>
-
-    <nav>
-        <?php if ($_SESSION["role"] === "admin") { ?>
-            <a href="manage_students.php">Manage Students</a>
-            <a href="manage_events.php">Manage Events</a>
-            <a href="events_api.html">Events API</a>
-        <?php } elseif ($_SESSION["role"] === "student") { ?>
-            <a href="student_dashboard.php">Student Dashboard</a>
-        <?php } ?>
-    </nav>
-
     <h2>Latest Registrations</h2>
 
     <table>
@@ -236,7 +235,7 @@ $registrationResult = $conn->query("
                     <td><?php echo htmlspecialchars($row["name"]); ?></td>
                     <td><?php echo htmlspecialchars($row["title"]); ?></td>
                     <td><?php echo htmlspecialchars($row["registration_date"]); ?></td>
-                    <td><?php echo htmlspecialchars($row["status"]); ?></td>
+                    <td><?php echo htmlspecialchars($row["status"] ?? "Not specified"); ?></td>
                 </tr>
             <?php } ?>
 
@@ -248,11 +247,12 @@ $registrationResult = $conn->query("
 
     </table>
 
-    <a href="logout.php" class="logout">Logout</a>
-
 </main>
 
-<hr>
+<footer>
+    <hr>
+    <p>StudentHub - Admin Portal</p>
+</footer>
 
 </body>
 </html>

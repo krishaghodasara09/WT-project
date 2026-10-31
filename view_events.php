@@ -111,14 +111,19 @@ $events = $stmt->get_result();
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub - Available Events</title>
-
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: honeydew;
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
+            padding: 0;
         }
 
         header {
@@ -130,21 +135,26 @@ $events = $stmt->get_result();
             color: darkgreen;
         }
 
+        main {
+            padding: 15px;
+        }
+
         .event-card {
             background-color: white;
             border: 2px solid #a5d6a7;
             border-radius: 10px;
             padding: 20px;
             margin: 20px auto;
-            width: 80%;
+            width: 90%;
             max-width: 550px;
+            overflow-wrap: anywhere;
         }
 
         .register {
             background-color: darkgreen;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
@@ -162,9 +172,10 @@ $events = $stmt->get_result();
         .message {
             padding: 12px;
             margin: 15px auto;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
             border-radius: 6px;
+            overflow-wrap: anywhere;
         }
 
         .success {
@@ -181,18 +192,50 @@ $events = $stmt->get_result();
             display: inline-block;
             background-color: darkgreen;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 6px;
             text-decoration: none;
             margin: 20px;
         }
 
         @media (max-width: 600px) {
+            header {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            main {
+                padding: 10px;
+            }
+
             .event-card {
-                width: 85%;
+                width: 100%;
+                padding: 15px;
+                margin: 15px auto;
+            }
+
+            .message {
+                width: 100%;
+            }
+
+            .register {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .back {
+                margin: 15px 0;
             }
         }
     </style>
+
 </head>
 
 <body>
